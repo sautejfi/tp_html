@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", () => {
+            
+                
+            let canvas = document.getElementById('canvas');
+            let ctx = canvas.getContext('2d');
+
+            const tab = [{top: 10}, 
+                            {top: 120}, 
+                            {top: 230}];
+
+            tab.forEach((element) => {
+                ctx.fillStyle = 'red';
+                ctx.fillRect(10, element.top, 100, 100);
+            });
+
+            let start = 0;
+            setTimeout(() => {
+                
+                tab.forEach((element) => {
+                    start += 1000;
+                    let left = 10;
+                    const move = () => {
+                        setInterval(() => {
+                            left += 10;
+                            if(left >= 200) {
+                                left = 10;
+                            }
+                            ctx.clearRect(10, element.top, canvas.width, 100);
+                            ctx.fillRect(left, element.top, 100, 100);
+                        }, 100);
+                    }
+                    setTimeout(() => {
+                        move();
+                    }, start);
+                    
+                });
+             }, 4000);
+
+        });
+    </script>
+    <title>TP JS #2</title>
+</head>
+<body>
+    <canvas id="canvas" width="300" height="400"></canvas>
+</body>
+</html>
